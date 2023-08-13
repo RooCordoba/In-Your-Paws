@@ -75,5 +75,5 @@ func _on_hazard_detector_area_entered(area):
 	pass
 
 func drop():
-	position.y += 1
+	position.y += 5
 	print("trying to drop")
