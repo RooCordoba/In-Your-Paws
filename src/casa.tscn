@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://45jd21wkgn1a"]
+[gd_scene load_steps=25 format=3 uid="uid://45jd21wkgn1a"]
 
 [ext_resource type="Script" path="res://src/casa.gd" id="1_m4tvo"]
 [ext_resource type="Texture2D" uid="uid://dqfjpy0qng88s" path="res://src/assets/Casa sin mesas o sillas.png" id="2_osovo"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dodysdyq4di6m" path="res://src/collectable/teleport_fish.tscn" id="5_77jy2"]
 [ext_resource type="Script" path="res://src/tacho_de_basura.gd" id="7_1o388"]
 [ext_resource type="Texture2D" uid="uid://dvf4wio73sm3x" path="res://src/assets/objetos_casa/tacho de basura.png" id="8_5ue2g"]
+[ext_resource type="AudioStream" uid="uid://dyyxcatt71aes" path="res://src/assets/audio/music/Gato_feliz.wav" id="9_1d4su"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2os4"]
 size = Vector2(950.75, 20)
@@ -250,6 +251,11 @@ shape = SubResource("RectangleShape2D_7wknk")
 position = Vector2(-371.721, -83.1573)
 polygon = PackedVector2Array(-62.5925, -21.1215, 36.4075, -23.1215, 73.4075, -17.1215, 73.4075, -25.1215, 37.4075, -35.1215, -62.5925, -31.1215)
 one_way_collision = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_1d4su")
+volume_db = -10.0
+autoplay = true
 
 [connection signal="body_entered" from="mesada_izquierda/Area2D" to="GrayCat" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="mesada_izquierda/Area2D" to="mesada_izquierda" method="_on_area_2d_body_entered"]
