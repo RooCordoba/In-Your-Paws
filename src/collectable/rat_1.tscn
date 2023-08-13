@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dt12drsekccur"]
+
+[ext_resource type="Script" path="res://src/collectable/fish.gd" id="1_eko4u"]
+[ext_resource type="Texture2D" uid="uid://da8lekiyxt6de" path="res://src/assets/collectables/ratitas/Rata 1.png" id="2_j4mqu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mbvf5"]
+radius = 12.9994
+height = 45.6947
+
+[node name="rat1" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_eko4u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(879, 497)
+scale = Vector2(0.101104, 0.101104)
+texture = ExtResource("2_j4mqu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(874, 509)
+rotation = 1.16669
+shape = SubResource("CapsuleShape2D_mbvf5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

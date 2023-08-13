@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://45jd21wkgn1a"]
+[gd_scene load_steps=30 format=3 uid="uid://45jd21wkgn1a"]
 
 [ext_resource type="Script" path="res://src/casa.gd" id="1_m4tvo"]
 [ext_resource type="Texture2D" uid="uid://dqfjpy0qng88s" path="res://src/assets/Casa sin mesas o sillas.png" id="2_osovo"]
@@ -8,6 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://dodysdyq4di6m" path="res://src/collectable/teleport_fish.tscn" id="5_77jy2"]
 [ext_resource type="Script" path="res://src/tacho_de_basura.gd" id="7_1o388"]
 [ext_resource type="Texture2D" uid="uid://dvf4wio73sm3x" path="res://src/assets/objetos_casa/tacho de basura.png" id="8_5ue2g"]
+[ext_resource type="PackedScene" uid="uid://dt12drsekccur" path="res://src/collectable/rat_1.tscn" id="9_tvsw7"]
+[ext_resource type="Script" path="res://src/collectable/rat_1.gd" id="10_36sxl"]
+[ext_resource type="PackedScene" uid="uid://y86vy5d5qkkm" path="res://src/collectable/rat_2.tscn" id="10_vaeda"]
+[ext_resource type="PackedScene" uid="uid://srpr8laql0b8" path="res://src/collectable/rat_3.tscn" id="11_84smp"]
+[ext_resource type="PackedScene" uid="uid://bfty1wgyh58bx" path="res://src/collectable/rat_4.tscn" id="12_fnect"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2os4"]
 size = Vector2(950.75, 20)
@@ -54,6 +59,16 @@ size = Vector2(132, 60.4569)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7wknk"]
 size = Vector2(136, 55)
 
+[sub_resource type="GDScript" id="GDScript_vr1j2"]
+script/source = "extends Area2D
+
+
+
+
+func _on_body_entered(body: Node2D) -> void:
+	queue_free()
+"
+
 [node name="casa" type="StaticBody2D"]
 script = ExtResource("1_m4tvo")
 
@@ -66,10 +81,11 @@ scale = Vector2(0.478, 0.478)
 texture = ExtResource("2_osovo")
 
 [node name="teleportFish" parent="." instance=ExtResource("5_77jy2")]
-position = Vector2(3269, 202)
+position = Vector2(3245, 158)
+scale = Vector2(1.965, 1.965)
 
 [node name="GrayCat" parent="." instance=ExtResource("2_qdt4q")]
-position = Vector2(2835, -282)
+position = Vector2(0, 0)
 
 [node name="Camera2D" type="Camera2D" parent="GrayCat"]
 position = Vector2(163, 524)
@@ -251,10 +267,35 @@ position = Vector2(-371.721, -83.1573)
 polygon = PackedVector2Array(-62.5925, -21.1215, 36.4075, -23.1215, 73.4075, -17.1215, 73.4075, -25.1215, 37.4075, -35.1215, -62.5925, -31.1215)
 one_way_collision = true
 
+[node name="rat1" parent="." instance=ExtResource("9_tvsw7")]
+position = Vector2(-186, -496)
+scale = Vector2(1.535, 1.535)
+script = ExtResource("10_36sxl")
+
+[node name="rat2" parent="." instance=ExtResource("10_vaeda")]
+position = Vector2(640, 20)
+scale = Vector2(1.535, 1.535)
+
+[node name="rat_3" parent="." instance=ExtResource("11_84smp")]
+position = Vector2(1284, -89)
+scale = Vector2(1.535, 1.535)
+
+[node name="rat_4" parent="." instance=ExtResource("12_fnect")]
+position = Vector2(1841, 153)
+scale = Vector2(1.535, 1.535)
+script = SubResource("GDScript_vr1j2")
+
+[node name="rat_5" parent="." instance=ExtResource("9_tvsw7")]
+position = Vector2(1164, -885)
+scale = Vector2(1.535, 1.535)
+
 [connection signal="body_entered" from="mesada_izquierda/Area2D" to="GrayCat" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="mesada_izquierda/Area2D" to="mesada_izquierda" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="mesa_derecha/Area2D" to="mesa_derecha" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="tacho_de_basura/Area2D" to="tacho_de_basura" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="tacho_de_basura/Area2D" to="tacho_de_basura" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="rat2" to="rat2" method="_on_body_entered"]
+[connection signal="body_entered" from="rat_3" to="rat_3" method="_on_body_entered"]
+[connection signal="body_entered" from="rat_4" to="rat_4" method="_on_body_entered"]
 
 [editable path="table_platform"]

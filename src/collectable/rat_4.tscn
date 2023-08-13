@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfty1wgyh58bx"]
+
+[ext_resource type="Script" path="res://src/collectable/rat_4.gd" id="1_78xk8"]
+[ext_resource type="Texture2D" uid="uid://ck4jpymbm6gfn" path="res://src/assets/collectables/ratitas/Rata 2.png" id="1_amwd6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6sbys"]
+radius = 12.9994
+height = 45.6947
+
+[node name="rat_4" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_78xk8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(11, -4)
+scale = Vector2(0.101689, 0.101689)
+texture = ExtResource("1_amwd6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5, 8)
+rotation = 1.16669
+shape = SubResource("CapsuleShape2D_6sbys")
