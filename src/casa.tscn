@@ -1,0 +1,232 @@
+[gd_scene load_steps=21 format=3 uid="uid://45jd21wkgn1a"]
+
+[ext_resource type="Script" path="res://src/casa.gd" id="1_m4tvo"]
+[ext_resource type="PackedScene" uid="uid://7rp0g6pimo3j" path="res://src/characters/gray_cat.tscn" id="2_qdt4q"]
+[ext_resource type="PackedScene" path="res://src/passthrough_platform.tscn" id="3_suqoy"]
+[ext_resource type="Texture2D" uid="uid://bbe0wx2awkr36" path="res://src/assets/Fondo Casa Freepik.jpg" id="4_ifqo0"]
+[ext_resource type="Script" path="res://src/passthrough_platform.gd" id="4_m8dhf"]
+[ext_resource type="PackedScene" uid="uid://dodysdyq4di6m" path="res://src/collectable/teleport_fish.tscn" id="5_77jy2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2os4"]
+size = Vector2(950.75, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_57p70"]
+size = Vector2(950.656, 41)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hm5a7"]
+size = Vector2(368, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1vxlg"]
+size = Vector2(369.5, 46)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ptq2g"]
+size = Vector2(410, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xhoir"]
+size = Vector2(412, 47)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rrhfb"]
+size = Vector2(671.5, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fcb02"]
+size = Vector2(671.796, 61.5551)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0mq1j"]
+size = Vector2(382, 42)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hb1vt"]
+size = Vector2(155, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m252q"]
+size = Vector2(155, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_msmv3"]
+size = Vector2(273, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cavvd"]
+size = Vector2(134, 29.4788)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vbmsu"]
+size = Vector2(132, 60.4569)
+
+[node name="casa" type="StaticBody2D"]
+script = ExtResource("1_m4tvo")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-23, -434, 3369, -434, 3354, 582, 2, 588, 1, -472, -4, -475, -5.48297, -430.238, -42, 672, 3532, 662, 3521, -540, -19, -532)
+
+[node name="FondoCasaFreepik" type="Sprite2D" parent="."]
+position = Vector2(1682, 91.375)
+scale = Vector2(0.478, 0.478)
+texture = ExtResource("4_ifqo0")
+
+[node name="teleportFish" parent="." instance=ExtResource("5_77jy2")]
+position = Vector2(584, 528)
+
+[node name="GrayCat" parent="." instance=ExtResource("2_qdt4q")]
+position = Vector2(86, -12)
+
+[node name="Camera2D" type="Camera2D" parent="GrayCat"]
+position = Vector2(163, 524)
+limit_left = 0
+limit_top = -430
+limit_right = 3365
+limit_bottom = 617
+position_smoothing_enabled = true
+editor_draw_limits = true
+
+[node name="table_platform" parent="." instance=ExtResource("3_suqoy")]
+
+[node name="CollisionShape2D" parent="table_platform" index="0"]
+position = Vector2(1220, 345)
+
+[node name="Area2D" parent="table_platform" index="1"]
+position = Vector2(640, 22)
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="table_platform/Area2D" index="0"]
+position = Vector2(576, 307)
+
+[node name="mesada_izquierda" type="StaticBody2D" parent="."]
+position = Vector2(-181, -51)
+script = ExtResource("4_m8dhf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mesada_izquierda"]
+position = Vector2(764.375, 327)
+shape = SubResource("RectangleShape2D_e2os4")
+one_way_collision = true
+
+[node name="Area2D" type="Area2D" parent="mesada_izquierda"]
+position = Vector2(1, 68)
+collision_mask = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="mesada_izquierda/Area2D"]
+position = Vector2(759.672, 248)
+shape = SubResource("RectangleShape2D_57p70")
+
+[node name="estante_microondas" type="StaticBody2D" parent="."]
+script = ExtResource("4_m8dhf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="estante_microondas"]
+position = Vector2(579, 57)
+shape = SubResource("RectangleShape2D_hm5a7")
+one_way_collision = true
+
+[node name="Area2D" type="Area2D" parent="estante_microondas"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="estante_microondas/Area2D"]
+position = Vector2(580, 43)
+shape = SubResource("RectangleShape2D_1vxlg")
+
+[node name="mesa_derecha" type="StaticBody2D" parent="."]
+script = ExtResource("4_m8dhf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mesa_derecha"]
+position = Vector2(1960, 347.5)
+shape = SubResource("RectangleShape2D_ptq2g")
+one_way_collision = true
+
+[node name="Area2D" type="Area2D" parent="mesa_derecha"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mesa_derecha/Area2D"]
+position = Vector2(1960, 335.5)
+shape = SubResource("RectangleShape2D_xhoir")
+
+[node name="mesada_derecha" type="StaticBody2D" parent="."]
+script = ExtResource("4_m8dhf")
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="mesada_derecha"]
+position = Vector2(2945.25, 304)
+shape = SubResource("RectangleShape2D_rrhfb")
+one_way_collision = true
+
+[node name="Area2D" type="Area2D" parent="mesada_derecha"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mesada_derecha/Area2D"]
+position = Vector2(2943.1, 283.778)
+shape = SubResource("RectangleShape2D_fcb02")
+
+[node name="heladera" type="StaticBody2D" parent="."]
+script = ExtResource("4_m8dhf")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="heladera"]
+position = Vector2(2394, -10)
+polygon = PackedVector2Array(-113, 2, 205, -2, 267, 9, 268, -5, 206, -18, -114, -8, -114, 10)
+one_way_collision = true
+
+[node name="Area2D" type="Area2D" parent="heladera"]
+collision_mask = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="heladera/Area2D"]
+position = Vector2(2470, -27)
+shape = SubResource("RectangleShape2D_0mq1j")
+
+[node name="microondas_derecho" type="StaticBody2D" parent="."]
+script = ExtResource("4_m8dhf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="microondas_derecho"]
+position = Vector2(2713.5, 203.5)
+shape = SubResource("RectangleShape2D_hb1vt")
+one_way_collision = true
+
+[node name="Area2D" type="Area2D" parent="microondas_derecho"]
+collision_mask = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="microondas_derecho/Area2D"]
+position = Vector2(2712.5, 195)
+shape = SubResource("RectangleShape2D_m252q")
+
+[node name="estanteria_izquierda" type="StaticBody2D" parent="."]
+script = ExtResource("4_m8dhf")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="estanteria_izquierda"]
+position = Vector2(763.004, -172.284)
+polygon = PackedVector2Array(-1.00391, -2.71619, 228.996, 7.28381, 228.996, -2.71619, -2.00391, -14.7162, -43.0039, 5.28381, -43.0039, 13.2838)
+one_way_collision = true
+
+[node name="Area2D" type="Area2D" parent="estanteria_izquierda"]
+collision_mask = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="estanteria_izquierda/Area2D"]
+position = Vector2(856.5, -184)
+shape = SubResource("RectangleShape2D_msmv3")
+
+[node name="lampara_izquierda" type="StaticBody2D" parent="."]
+script = ExtResource("4_m8dhf")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="lampara_izquierda"]
+position = Vector2(1275, -20.7394)
+shape = SubResource("RectangleShape2D_cavvd")
+one_way_collision = true
+
+[node name="Area2D" type="Area2D" parent="lampara_izquierda"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lampara_izquierda/Area2D"]
+position = Vector2(1275, -40)
+shape = SubResource("RectangleShape2D_vbmsu")
+
+[node name="lampara_derecha" type="StaticBody2D" parent="."]
+position = Vector2(1702.05, -42.8398)
+script = ExtResource("4_m8dhf")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="lampara_derecha"]
+position = Vector2(308.949, 19.8398)
+shape = SubResource("RectangleShape2D_cavvd")
+one_way_collision = true
+
+[node name="Area2D" type="Area2D" parent="lampara_derecha"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lampara_derecha/Area2D"]
+position = Vector2(306.949, 3.83975)
+shape = SubResource("RectangleShape2D_vbmsu")
+
+[connection signal="body_entered" from="mesada_izquierda/Area2D" to="GrayCat" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="mesada_izquierda/Area2D" to="mesada_izquierda" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="mesa_derecha/Area2D" to="mesa_derecha" method="_on_area_2d_body_entered"]
+
+[editable path="table_platform"]

@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://cp0vqm8puokv3"]
+
+[ext_resource type="Texture2D" uid="uid://cbs8lf4ns4mqc" path="res://src/assets/garbage_bin.png" id="1_rrblj"]
+
+[node name="garbage_bin" type="StaticBody2D"]
+collision_mask = 3
+
+[node name="GarbageBin" type="Sprite2D" parent="."]
+position = Vector2(441.172, 560.5)
+scale = Vector2(0.0450147, 0.0393728)
+texture = ExtResource("1_rrblj")
+
+[node name="tacho_de_basura" type="CollisionPolygon2D" parent="."]
+position = Vector2(403, 518)
+polygon = PackedVector2Array(-4, -2, -5, 97, 80, 97, 84, -8, 38, -11, -4, -6)

@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dodysdyq4di6m"]
+
+[ext_resource type="Texture2D" uid="uid://bahqcfqih1oc7" path="res://src/assets/fish.png" id="1_34bt1"]
+[ext_resource type="Script" path="res://src/collectable/teleport_fish.gd" id="1_k8rfm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hkx7t"]
+radius = 16.5085
+height = 33.017
+
+[node name="teleportFish" type="Area2D" groups=["TP_Fish"]]
+position = Vector2(1022, 582)
+collision_layer = 12
+collision_mask = 2
+script = ExtResource("1_k8rfm")
+
+[node name="Fish" type="Sprite2D" parent="."]
+position = Vector2(-9.49023, -1.6875)
+scale = Vector2(0.0350577, 0.0350577)
+texture = ExtResource("1_34bt1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.48883, -0.6875)
+rotation = 1.5688
+shape = SubResource("CapsuleShape2D_hkx7t")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

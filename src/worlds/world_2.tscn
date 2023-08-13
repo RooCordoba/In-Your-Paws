@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://bccu7hfiy0x08"]
+
+[ext_resource type="Script" path="res://src/worlds/world_2.gd" id="1_w04o6"]
+[ext_resource type="Texture2D" uid="uid://bdvqmll4n08wy" path="res://src/assets/city.PNG" id="2_g7sl7"]
+[ext_resource type="PackedScene" uid="uid://7rp0g6pimo3j" path="res://src/characters/gray_cat.tscn" id="3_eck06"]
+[ext_resource type="PackedScene" uid="uid://cp0vqm8puokv3" path="res://src/world_obstacles/garbage_bin.tscn" id="4_ew0j8"]
+[ext_resource type="PackedScene" uid="uid://dm2pf2u7tjla1" path="res://src/collectable/fish.tscn" id="5_nlgjb"]
+[ext_resource type="PackedScene" uid="uid://dodysdyq4di6m" path="res://src/collectable/teleport_fish.tscn" id="6_r3st1"]
+
+[node name="world_2" type="StaticBody2D"]
+script = ExtResource("1_w04o6")
+
+[node name="borders of the map" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-1, 2, 1, 615, 4248, 616, 4248, -5, 4273, -7, 4275, 652, -38, 648, -34, -88, 1, -92)
+
+[node name="City" type="Sprite2D" parent="."]
+position = Vector2(1066, 262.5)
+scale = Vector2(2.36782, 2.70881)
+texture = ExtResource("2_g7sl7")
+
+[node name="City2" type="Sprite2D" parent="."]
+position = Vector2(3181, 262.571)
+scale = Vector2(2.36891, 2.70936)
+texture = ExtResource("2_g7sl7")
+
+[node name="GrayCat" parent="." instance=ExtResource("3_eck06")]
+position = Vector2(1400, -317)
+
+[node name="RemoteTransform2D2" type="RemoteTransform2D" parent="GrayCat"]
+position = Vector2(171, 519)
+remote_path = NodePath("../../Camera2D")
+
+[node name="garbage_bin" parent="." instance=ExtResource("4_ew0j8")]
+position = Vector2(1070, -3)
+
+[node name="fish" parent="." instance=ExtResource("5_nlgjb")]
+position = Vector2(935, -49)
+
+[node name="fish2" parent="." instance=ExtResource("5_nlgjb")]
+position = Vector2(774, 32)
+
+[node name="teleportFish" parent="." instance=ExtResource("6_r3st1")]
+position = Vector2(990, 483)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1571, 202)
+limit_left = 0
+limit_top = -90
+limit_right = 4249
+limit_bottom = 617
+position_smoothing_enabled = true
+editor_draw_limits = true
