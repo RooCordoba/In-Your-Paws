@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4xhoq8kmftyd"]
+
+[ext_resource type="Texture2D" uid="uid://clyffw7c86lm5" path="res://src/assets/menu/Credits.jpg" id="1_1kyqc"]
+[ext_resource type="Script" path="res://src/creditos.gd" id="1_jr1hu"]
+[ext_resource type="AudioStream" uid="uid://dr1bdjdf43ciq" path="res://src/assets/audio/music/Gato_feliz_presentacion.wav" id="2_a82bc"]
+[ext_resource type="Theme" uid="uid://dnpacp80v0k01" path="res://src/assets/menu/menu_buttons.tres" id="4_t84n0"]
+
+[node name="creditos" type="CanvasLayer"]
+script = ExtResource("1_jr1hu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(589.5, 309.438)
+scale = Vector2(0.613021, 0.573264)
+texture = ExtResource("1_1kyqc")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_a82bc")
+volume_db = -10.0
+autoplay = true
+
+[node name="QuitButton" type="Button" parent="."]
+offset_left = 952.0
+offset_top = 50.0
+offset_right = 1113.0
+offset_bottom = 116.0
+theme = ExtResource("4_t84n0")
+text = "Salir"
+
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

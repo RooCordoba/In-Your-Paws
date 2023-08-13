@@ -62,6 +62,7 @@ animations = [{
 size = Vector2(79, 57)
 
 [node name="Street_Cat" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_4fqao")
 
 [node name="HazardDetector" type="Area2D" parent="."]

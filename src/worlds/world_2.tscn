@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bccu7hfiy0x08"]
+[gd_scene load_steps=34 format=3 uid="uid://bccu7hfiy0x08"]
 
 [ext_resource type="Script" path="res://src/worlds/world_2.gd" id="1_w04o6"]
 [ext_resource type="Texture2D" uid="uid://c21t6507utbdf" path="res://src/assets/exterior dia.jpg" id="2_qatye"]
@@ -14,7 +14,22 @@
 [ext_resource type="AudioStream" uid="uid://cxxoana6oqhkt" path="res://src/assets/audio/music/Fondo Gato Triste.wav" id="8_8kwa3"]
 [ext_resource type="Texture2D" uid="uid://conv6km5q6he2" path="res://src/assets/Arbusto 1.png" id="9_kabyk"]
 [ext_resource type="Texture2D" uid="uid://boh5ug5phvphl" path="res://src/assets/Arbusto 2.png" id="10_nnflt"]
+[ext_resource type="Texture2D" uid="uid://iwnodm4vaeyn" path="res://src/assets/collectables/pescaditos/Peces/Brillo/Pez 3 A.png" id="11_w543f"]
 [ext_resource type="Texture2D" uid="uid://bwlouspqu0gce" path="res://src/assets/objetos_calle/Vidro.png" id="14_ondu5"]
+[ext_resource type="PackedScene" path="res://src/collectable/rat_1.tscn" id="16_v0vc7"]
+[ext_resource type="Script" path="res://src/collectable/rat_1.gd" id="17_50sye"]
+[ext_resource type="PackedScene" path="res://src/collectable/rat_2.tscn" id="18_68om8"]
+[ext_resource type="Texture2D" uid="uid://bw3c6gqkl508e" path="res://src/assets/collectables/pescaditos/Peces/Sombra/Pez 1 S.png" id="19_4ckwe"]
+[ext_resource type="PackedScene" path="res://src/collectable/rat_3.tscn" id="19_df3a2"]
+[ext_resource type="PackedScene" path="res://src/collectable/rat_4.tscn" id="20_yyxcr"]
+[ext_resource type="Script" path="res://src/tacho_de_basura.gd" id="21_fxhl4"]
+[ext_resource type="Texture2D" uid="uid://bjqtgje0sm4ce" path="res://src/assets/collectables/pescaditos/Peces/Sombra/Pez 2 S.png" id="22_q1f7m"]
+[ext_resource type="Texture2D" uid="uid://dxl1fbdp6oxt7" path="res://src/assets/collectables/pescaditos/Peces/Sombra/Pez 5 S.png" id="24_ddgen"]
+[ext_resource type="Texture2D" uid="uid://bb0dt0ew4bf28" path="res://src/assets/collectables/pescaditos/Peces/Sombra/Pez 7 S.png" id="26_b6ejb"]
+[ext_resource type="Texture2D" uid="uid://dcfwmcm51amss" path="res://src/assets/collectables/pescaditos/Peces/Sombra/Pez 8 S.png" id="27_vyfi8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qa4de"]
+size = Vector2(212.25, 74.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_26kww"]
 size = Vector2(706, 76.5835)
@@ -27,6 +42,16 @@ size = Vector2(892.942, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wmuma"]
 size = Vector2(890, 49.6976)
+
+[sub_resource type="GDScript" id="GDScript_4ud5y"]
+script/source = "extends Area2D
+
+
+
+
+func _on_body_entered(body: Node2D) -> void:
+	queue_free()
+"
 
 [node name="world_2" type="StaticBody2D"]
 script = ExtResource("1_w04o6")
@@ -69,7 +94,6 @@ texture = ExtResource("7_al57l")
 
 [node name="GrayCat" parent="." instance=ExtResource("7_hfhev")]
 position = Vector2(2714, -68.0001)
-collision_layer = 2
 collision_mask = 5
 
 [node name="RemoteTransform2D2" type="RemoteTransform2D" parent="GrayCat"]
@@ -88,7 +112,11 @@ visible = false
 position = Vector2(774, 32)
 
 [node name="teleportFish" parent="." instance=ExtResource("6_r3st1")]
-position = Vector2(-407, 427)
+position = Vector2(616, 289)
+
+[node name="Sprite2D" parent="teleportFish" index="0"]
+position = Vector2(8, -10)
+texture = ExtResource("11_w543f")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(2873, 459)
@@ -98,6 +126,17 @@ limit_right = 2979
 limit_bottom = 687
 position_smoothing_enabled = true
 editor_draw_limits = true
+
+[node name="exit_level" type="StaticBody2D" parent="."]
+position = Vector2(616, 289)
+script = ExtResource("21_fxhl4")
+
+[node name="Area2D" type="Area2D" parent="exit_level"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="exit_level/Area2D"]
+position = Vector2(34.875, 142.25)
+shape = SubResource("RectangleShape2D_qa4de")
 
 [node name="banco_derecho" type="StaticBody2D" parent="."]
 script = ExtResource("7_n7yk6")
@@ -123,6 +162,7 @@ polygon = PackedVector2Array(93.2303, 15.2194, 214.23, 30.2194, 785.23, -21.7806
 one_way_collision = true
 
 [node name="Area2D" type="Area2D" parent="banco_izquierdo"]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="banco_izquierdo/Area2D"]
 position = Vector2(931.8, 457.9)
@@ -137,6 +177,7 @@ shape = SubResource("RectangleShape2D_yj77e")
 one_way_collision = true
 
 [node name="Area2D" type="Area2D" parent="mesa"]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="mesa/Area2D"]
 position = Vector2(1942.47, 339)
@@ -152,6 +193,7 @@ one_way_collision = true
 
 [node name="Area2D" type="Area2D" parent="rama"]
 position = Vector2(1, -1)
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="rama/Area2D"]
 polygon = PackedVector2Array(2098, 78, 2104, 107, 2149, 108, 2223, 54, 2223, 47, 2152, 74)
@@ -181,4 +223,58 @@ position = Vector2(2827, 653)
 scale = Vector2(0.362194, 0.362194)
 texture = ExtResource("10_nnflt")
 
+[node name="rat1" parent="." instance=ExtResource("16_v0vc7")]
+position = Vector2(-260, -416)
+scale = Vector2(1.535, 1.535)
+script = ExtResource("17_50sye")
+
+[node name="Sprite2D" parent="rat1" index="0"]
+position = Vector2(873.616, 506.189)
+texture = ExtResource("19_4ckwe")
+
+[node name="rat2" parent="." instance=ExtResource("18_68om8")]
+position = Vector2(360, 480)
+scale = Vector2(1.535, 1.535)
+
+[node name="Sprite2D" parent="rat2" index="0"]
+position = Vector2(9.12036, -9.12061)
+texture = ExtResource("22_q1f7m")
+
+[node name="rat_3" parent="." instance=ExtResource("19_df3a2")]
+position = Vector2(1917, 485)
+scale = Vector2(1.535, 1.535)
+
+[node name="Sprite2D" parent="rat_3" index="0"]
+position = Vector2(13.6807, -8.46899)
+texture = ExtResource("24_ddgen")
+
+[node name="rat_4" parent="." instance=ExtResource("20_yyxcr")]
+position = Vector2(1899, 218)
+scale = Vector2(1.535, 1.535)
+script = SubResource("GDScript_4ud5y")
+
+[node name="Sprite2D" parent="rat_4" index="0"]
+position = Vector2(5.86328, 8.46912)
+texture = ExtResource("26_b6ejb")
+
+[node name="rat_5" parent="." instance=ExtResource("16_v0vc7")]
+position = Vector2(816, -742)
+scale = Vector2(1.535, 1.535)
+
+[node name="Sprite2D" parent="rat_5" index="0"]
+position = Vector2(875.57, 509.446)
+texture = ExtResource("27_vyfi8")
+
+[connection signal="body_entered" from="exit_level/Area2D" to="exit_level" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="exit_level/Area2D" to="exit_level" method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="banco_derecho/Area2D" to="banco_derecho" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="rat2" to="rat2" method="_on_body_entered"]
+[connection signal="body_entered" from="rat_3" to="rat_3" method="_on_body_entered"]
+[connection signal="body_entered" from="rat_4" to="rat_4" method="_on_body_entered"]
+
+[editable path="teleportFish"]
+[editable path="rat1"]
+[editable path="rat2"]
+[editable path="rat_3"]
+[editable path="rat_4"]
+[editable path="rat_5"]

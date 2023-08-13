@@ -1,7 +1,6 @@
 extends StaticBody2D
 
 var level_objective_completed = false
-var fish_grabbed = false
 
 var rata1 =preload("res://src/collectable/rat_1.tscn")
 var rata2 =preload("res://src/collectable/rat_2.tscn")

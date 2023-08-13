@@ -11,11 +11,11 @@
 [ext_resource type="Script" path="res://src/tacho_de_basura.gd" id="7_1o388"]
 [ext_resource type="Texture2D" uid="uid://dvf4wio73sm3x" path="res://src/assets/objetos_casa/tacho de basura.png" id="8_5ue2g"]
 [ext_resource type="AudioStream" uid="uid://dyyxcatt71aes" path="res://src/assets/audio/music/Gato_feliz.wav" id="9_1d4su"]
-[ext_resource type="PackedScene" uid="uid://dt12drsekccur" path="res://src/collectable/rat_1.tscn" id="9_tvsw7"]
+[ext_resource type="PackedScene" path="res://src/collectable/rat_1.tscn" id="9_tvsw7"]
 [ext_resource type="Script" path="res://src/collectable/rat_1.gd" id="10_36sxl"]
-[ext_resource type="PackedScene" uid="uid://y86vy5d5qkkm" path="res://src/collectable/rat_2.tscn" id="10_vaeda"]
-[ext_resource type="PackedScene" uid="uid://srpr8laql0b8" path="res://src/collectable/rat_3.tscn" id="11_84smp"]
-[ext_resource type="PackedScene" uid="uid://bfty1wgyh58bx" path="res://src/collectable/rat_4.tscn" id="12_fnect"]
+[ext_resource type="PackedScene" path="res://src/collectable/rat_2.tscn" id="10_vaeda"]
+[ext_resource type="PackedScene" path="res://src/collectable/rat_3.tscn" id="11_84smp"]
+[ext_resource type="PackedScene" path="res://src/collectable/rat_4.tscn" id="12_fnect"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2os4"]
 size = Vector2(950.75, 20)
