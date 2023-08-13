@@ -1,54 +1,122 @@
-[gd_scene load_steps=7 format=3 uid="uid://bccu7hfiy0x08"]
+[gd_scene load_steps=12 format=3 uid="uid://bccu7hfiy0x08"]
 
 [ext_resource type="Script" path="res://src/worlds/world_2.gd" id="1_w04o6"]
-[ext_resource type="Texture2D" uid="uid://bdvqmll4n08wy" path="res://src/assets/city.PNG" id="2_g7sl7"]
+[ext_resource type="Texture2D" uid="uid://d17la8tddppay" path="res://src/assets/Exterior dia.png" id="2_3awaw"]
 [ext_resource type="PackedScene" uid="uid://cp0vqm8puokv3" path="res://src/world_obstacles/garbage_bin.tscn" id="4_ew0j8"]
 [ext_resource type="PackedScene" uid="uid://dm2pf2u7tjla1" path="res://src/collectable/fish.tscn" id="5_nlgjb"]
 [ext_resource type="PackedScene" uid="uid://dodysdyq4di6m" path="res://src/collectable/teleport_fish.tscn" id="6_r3st1"]
-[ext_resource type="PackedScene" uid="uid://qt4y8j6e3fj3" path="res://src/characters/street_cat.tscn" id="7_hfhev"]
+[ext_resource type="PackedScene" uid="uid://bjrk6a85vhdqd" path="res://src/characters/street_cat.tscn" id="7_hfhev"]
+[ext_resource type="Script" path="res://src/passthrough_platform.gd" id="7_n7yk6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_26kww"]
+size = Vector2(706, 76.5835)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aoky7"]
+size = Vector2(701, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yj77e"]
+size = Vector2(892.942, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wmuma"]
+size = Vector2(890, 49.6976)
 
 [node name="world_2" type="StaticBody2D"]
 script = ExtResource("1_w04o6")
 
-[node name="borders of the map" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-1, 2, 1, 615, 4248, 616, 4248, -5, 4273, -7, 4275, 652, -38, 648, -34, -88, 1, -92)
-
 [node name="City" type="Sprite2D" parent="."]
-position = Vector2(1066, 262.5)
-scale = Vector2(2.36782, 2.70881)
-texture = ExtResource("2_g7sl7")
+position = Vector2(1433.5, 169)
+scale = Vector2(0.43821, 0.469091)
+texture = ExtResource("2_3awaw")
 
-[node name="City2" type="Sprite2D" parent="."]
-position = Vector2(3181, 262.571)
-scale = Vector2(2.36891, 2.70936)
-texture = ExtResource("2_g7sl7")
+[node name="borders of the map" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-114, 50, -111, 440, -112, 647, 434, 652, 1504, 654, 2976, 650, 2979, -346, -111, -346, -111, 44, -144, 40, -176, -439, 3098, -451, 3132, 727, -171, 740, -144, 47)
 
 [node name="garbage_bin" parent="." instance=ExtResource("4_ew0j8")]
-position = Vector2(1070, -3)
+position = Vector2(2453, 29)
 
 [node name="fish" parent="." instance=ExtResource("5_nlgjb")]
+visible = false
 position = Vector2(935, -49)
 
 [node name="fish2" parent="." instance=ExtResource("5_nlgjb")]
+visible = false
 position = Vector2(774, 32)
 
 [node name="teleportFish" parent="." instance=ExtResource("6_r3st1")]
+visible = false
 position = Vector2(990, 483)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(1557, 322)
-limit_left = 0
-limit_top = -90
-limit_right = 4249
-limit_bottom = 617
+position = Vector2(2895, 493)
+limit_left = -110
+limit_top = -350
+limit_right = 2979
+limit_bottom = 687
 position_smoothing_enabled = true
 editor_draw_limits = true
 
-[node name="Street_Cat" parent="." instance=ExtResource("7_hfhev")]
-position = Vector2(1398, -205)
+[node name="GrayCat" parent="." instance=ExtResource("7_hfhev")]
+position = Vector2(2736, -34)
 collision_layer = 2
 collision_mask = 5
 
-[node name="RemoteTransform2D2" type="RemoteTransform2D" parent="Street_Cat"]
+[node name="RemoteTransform2D2" type="RemoteTransform2D" parent="GrayCat"]
 position = Vector2(159, 527)
 remote_path = NodePath("../../Camera2D")
+
+[node name="banco_derecho" type="StaticBody2D" parent="."]
+script = ExtResource("7_n7yk6")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="banco_derecho"]
+position = Vector2(1398.88, 565.445)
+polygon = PackedVector2Array(-49.8762, -62.4449, 521.124, -8.44495, 642.124, -23.4449, 650.124, -43.4449, 516.124, -30.4449, -54.8762, -69.4449)
+one_way_collision = true
+
+[node name="Area2D" type="Area2D" parent="banco_derecho"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="banco_derecho/Area2D"]
+position = Vector2(1696, 517.292)
+shape = SubResource("RectangleShape2D_26kww")
+
+[node name="banco_izquierdo" type="StaticBody2D" parent="."]
+script = ExtResource("7_n7yk6")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="banco_izquierdo"]
+position = Vector2(487.77, 461.781)
+polygon = PackedVector2Array(93.2303, 15.2194, 214.23, 30.2194, 785.23, -21.7806, 779.23, -32.7806, 222.23, 13.2194, 84.2303, -3.78058)
+one_way_collision = true
+
+[node name="Area2D" type="Area2D" parent="banco_izquierdo"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="banco_izquierdo/Area2D"]
+position = Vector2(922.5, 452)
+shape = SubResource("RectangleShape2D_aoky7")
+
+[node name="mesa" type="StaticBody2D" parent="."]
+script = ExtResource("7_n7yk6")
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="mesa"]
+position = Vector2(1930.53, 349)
+shape = SubResource("RectangleShape2D_yj77e")
+one_way_collision = true
+
+[node name="Area2D" type="Area2D" parent="mesa"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mesa/Area2D"]
+position = Vector2(1931, 334.151)
+shape = SubResource("RectangleShape2D_wmuma")
+
+[node name="rama" type="StaticBody2D" parent="."]
+script = ExtResource("7_n7yk6")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="rama"]
+polygon = PackedVector2Array(2104, 108, 2149, 108, 2224, 54, 2148, 96, 2098, 96)
+one_way_collision = true
+
+[node name="Area2D" type="Area2D" parent="rama"]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="rama/Area2D"]
+polygon = PackedVector2Array(2098, 78, 2104, 107, 2149, 108, 2223, 54, 2223, 47, 2152, 74)
+
+[connection signal="body_entered" from="banco_derecho/Area2D" to="banco_derecho" method="_on_area_2d_body_entered"]
