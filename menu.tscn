@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://g7n5sqs5wjdu"]
+
+[ext_resource type="Script" path="res://menu.gd" id="1_y1rck"]
+[ext_resource type="Texture2D" uid="uid://fkkn3tgtdmmk" path="res://src/assets/menu/PORTADA.jpg" id="2_a2yf1"]
+[ext_resource type="Theme" uid="uid://dnpacp80v0k01" path="res://src/assets/menu/menu_buttons.tres" id="3_ostax"]
+
+[node name="Menu" type="CanvasLayer"]
+follow_viewport_enabled = true
+script = ExtResource("1_y1rck")
+
+[node name="Portada" type="Sprite2D" parent="."]
+position = Vector2(590, 310)
+scale = Vector2(0.614583, 0.574074)
+texture = ExtResource("2_a2yf1")
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 519.0
+offset_top = 465.0
+offset_right = 686.0
+offset_bottom = 523.0
+theme = ExtResource("3_ostax")
+text = "Jugar
+"
+
+[node name="QuitButton" type="Button" parent="."]
+offset_left = 522.0
+offset_top = 534.0
+offset_right = 683.0
+offset_bottom = 600.0
+theme = ExtResource("3_ostax")
+text = "Salir"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

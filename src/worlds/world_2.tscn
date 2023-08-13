@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://src/worlds/world_2.gd" id="1_w04o6"]
 [ext_resource type="Texture2D" uid="uid://bdvqmll4n08wy" path="res://src/assets/city.PNG" id="2_g7sl7"]
-[ext_resource type="PackedScene" uid="uid://7rp0g6pimo3j" path="res://src/characters/gray_cat.tscn" id="3_eck06"]
 [ext_resource type="PackedScene" uid="uid://cp0vqm8puokv3" path="res://src/world_obstacles/garbage_bin.tscn" id="4_ew0j8"]
 [ext_resource type="PackedScene" uid="uid://dm2pf2u7tjla1" path="res://src/collectable/fish.tscn" id="5_nlgjb"]
 [ext_resource type="PackedScene" uid="uid://dodysdyq4di6m" path="res://src/collectable/teleport_fish.tscn" id="6_r3st1"]
+[ext_resource type="PackedScene" uid="uid://qt4y8j6e3fj3" path="res://src/characters/street_cat.tscn" id="7_hfhev"]
 
 [node name="world_2" type="StaticBody2D"]
 script = ExtResource("1_w04o6")
@@ -23,13 +23,6 @@ position = Vector2(3181, 262.571)
 scale = Vector2(2.36891, 2.70936)
 texture = ExtResource("2_g7sl7")
 
-[node name="GrayCat" parent="." instance=ExtResource("3_eck06")]
-position = Vector2(1400, -317)
-
-[node name="RemoteTransform2D2" type="RemoteTransform2D" parent="GrayCat"]
-position = Vector2(171, 519)
-remote_path = NodePath("../../Camera2D")
-
 [node name="garbage_bin" parent="." instance=ExtResource("4_ew0j8")]
 position = Vector2(1070, -3)
 
@@ -43,10 +36,19 @@ position = Vector2(774, 32)
 position = Vector2(990, 483)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(1571, 202)
+position = Vector2(1557, 322)
 limit_left = 0
 limit_top = -90
 limit_right = 4249
 limit_bottom = 617
 position_smoothing_enabled = true
 editor_draw_limits = true
+
+[node name="Street_Cat" parent="." instance=ExtResource("7_hfhev")]
+position = Vector2(1398, -205)
+collision_layer = 2
+collision_mask = 5
+
+[node name="RemoteTransform2D2" type="RemoteTransform2D" parent="Street_Cat"]
+position = Vector2(159, 527)
+remote_path = NodePath("../../Camera2D")

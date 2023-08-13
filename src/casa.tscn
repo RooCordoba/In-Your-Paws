@@ -1,7 +1,7 @@
 [gd_scene load_steps=24 format=3 uid="uid://45jd21wkgn1a"]
 
 [ext_resource type="Script" path="res://src/casa.gd" id="1_m4tvo"]
-[ext_resource type="Texture2D" path="res://src/assets/Casa sin mesas o sillas.png" id="2_osovo"]
+[ext_resource type="Texture2D" uid="uid://dqfjpy0qng88s" path="res://src/assets/Casa sin mesas o sillas.png" id="2_osovo"]
 [ext_resource type="PackedScene" uid="uid://7rp0g6pimo3j" path="res://src/characters/gray_cat.tscn" id="2_qdt4q"]
 [ext_resource type="PackedScene" uid="uid://cwasgich4vlfb" path="res://src/passthrough_platform.tscn" id="3_suqoy"]
 [ext_resource type="Script" path="res://src/passthrough_platform.gd" id="4_m8dhf"]

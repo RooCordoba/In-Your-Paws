@@ -5,7 +5,6 @@ func _on_area_2d_body_entered(body):
 	if(body.name == "GrayCat"):
 		$"../GrayCat".allow_drop = true
 
-
 func _on_area_2d_body_exited(body):
 	if(body.name == "GrayCat"):
 		$"../GrayCat".allow_drop = false
