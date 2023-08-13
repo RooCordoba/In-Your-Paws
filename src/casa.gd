@@ -1,5 +1,7 @@
 extends StaticBody2D
 
+var level_objective_completed = false
+var fish_grabbed = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

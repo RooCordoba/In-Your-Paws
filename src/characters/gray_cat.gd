@@ -6,6 +6,7 @@ const SPEED = 350.0
 const JUMP_VELOCITY = -700.0
 
 var allow_drop = false
+var can_move = true
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -14,19 +15,23 @@ var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var starting_position = global_position
 
 func _physics_process(delta: float) -> void:
-	
+
 	apply_gravity(delta)
-	handle_jump()
+	
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_axis := Input.get_axis("ui_left", "ui_right")
 	
-	handle_acceletarion(input_axis, delta)
+	
 	apply_friction(input_axis, delta)
-	update_animation(input_axis)
+	
 
 	move_and_slide()
+	if can_move:
+		handle_jump()
+		handle_acceletarion(input_axis, delta)
+		update_animation(input_axis)
 	
 	if(velocity.x >0):
 		$AnimatedSprite2D.flip_h = false

@@ -1,11 +1,13 @@
-[gd_scene load_steps=21 format=3 uid="uid://45jd21wkgn1a"]
+[gd_scene load_steps=24 format=3 uid="uid://45jd21wkgn1a"]
 
 [ext_resource type="Script" path="res://src/casa.gd" id="1_m4tvo"]
-[ext_resource type="Texture2D" uid="uid://dqfjpy0qng88s" path="res://src/assets/Casa sin mesas o sillas.png" id="2_osovo"]
+[ext_resource type="Texture2D" path="res://src/assets/Casa sin mesas o sillas.png" id="2_osovo"]
 [ext_resource type="PackedScene" uid="uid://7rp0g6pimo3j" path="res://src/characters/gray_cat.tscn" id="2_qdt4q"]
 [ext_resource type="PackedScene" uid="uid://cwasgich4vlfb" path="res://src/passthrough_platform.tscn" id="3_suqoy"]
 [ext_resource type="Script" path="res://src/passthrough_platform.gd" id="4_m8dhf"]
 [ext_resource type="PackedScene" uid="uid://dodysdyq4di6m" path="res://src/collectable/teleport_fish.tscn" id="5_77jy2"]
+[ext_resource type="Script" path="res://src/tacho_de_basura.gd" id="7_1o388"]
+[ext_resource type="Texture2D" uid="uid://dvf4wio73sm3x" path="res://src/assets/objetos_casa/tacho de basura.png" id="8_5ue2g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2os4"]
 size = Vector2(950.75, 20)
@@ -26,10 +28,10 @@ size = Vector2(410, 23)
 size = Vector2(412, 47)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rrhfb"]
-size = Vector2(671.5, 20)
+size = Vector2(544.5, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fcb02"]
-size = Vector2(671.796, 61.5551)
+size = Vector2(546.798, 61.5551)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0mq1j"]
 size = Vector2(382, 42)
@@ -49,6 +51,9 @@ size = Vector2(134, 29.4788)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vbmsu"]
 size = Vector2(132, 60.4569)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7wknk"]
+size = Vector2(136, 55)
+
 [node name="casa" type="StaticBody2D"]
 script = ExtResource("1_m4tvo")
 
@@ -61,10 +66,10 @@ scale = Vector2(0.478, 0.478)
 texture = ExtResource("2_osovo")
 
 [node name="teleportFish" parent="." instance=ExtResource("5_77jy2")]
-position = Vector2(584, 528)
+position = Vector2(3269, 202)
 
 [node name="GrayCat" parent="." instance=ExtResource("2_qdt4q")]
-position = Vector2(86, -12)
+position = Vector2(2835, -282)
 
 [node name="Camera2D" type="Camera2D" parent="GrayCat"]
 position = Vector2(163, 524)
@@ -138,7 +143,7 @@ shape = SubResource("RectangleShape2D_xhoir")
 script = ExtResource("4_m8dhf")
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="mesada_derecha"]
-position = Vector2(2945.25, 304)
+position = Vector2(2881.75, 304)
 shape = SubResource("RectangleShape2D_rrhfb")
 one_way_collision = true
 
@@ -146,7 +151,7 @@ one_way_collision = true
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="mesada_derecha/Area2D"]
-position = Vector2(2943.1, 283.778)
+position = Vector2(2880.6, 283.778)
 shape = SubResource("RectangleShape2D_fcb02")
 
 [node name="heladera" type="StaticBody2D" parent="."]
@@ -225,8 +230,31 @@ collision_mask = 2
 position = Vector2(306.949, 3.83975)
 shape = SubResource("RectangleShape2D_vbmsu")
 
+[node name="tacho_de_basura" type="StaticBody2D" parent="."]
+position = Vector2(3624.31, 514.279)
+script = ExtResource("7_1o388")
+
+[node name="Sprite2D" type="Sprite2D" parent="tacho_de_basura"]
+position = Vector2(-369.314, -23.2788)
+scale = Vector2(0.472014, 0.472014)
+texture = ExtResource("8_5ue2g")
+
+[node name="Area2D" type="Area2D" parent="tacho_de_basura"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tacho_de_basura/Area2D"]
+position = Vector2(-365.314, -129.779)
+shape = SubResource("RectangleShape2D_7wknk")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="tacho_de_basura"]
+position = Vector2(-371.721, -83.1573)
+polygon = PackedVector2Array(-62.5925, -21.1215, 36.4075, -23.1215, 73.4075, -17.1215, 73.4075, -25.1215, 37.4075, -35.1215, -62.5925, -31.1215)
+one_way_collision = true
+
 [connection signal="body_entered" from="mesada_izquierda/Area2D" to="GrayCat" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="mesada_izquierda/Area2D" to="mesada_izquierda" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="mesa_derecha/Area2D" to="mesa_derecha" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="tacho_de_basura/Area2D" to="tacho_de_basura" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="tacho_de_basura/Area2D" to="tacho_de_basura" method="_on_area_2d_body_exited"]
 
 [editable path="table_platform"]
